@@ -5,12 +5,23 @@ module.exports = function(environment) {
     modulePrefix: 'ember-blog-client',
     environment: environment,
     baseURL: '/',
+    adapterURL: process.env.ADAPTER_URL,
     locationType: 'auto',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
         // e.g. 'with-controller': true
       }
+    },
+
+    contentSecurityPolicy: {
+      'default-src': "'none'",
+      'script-src': "'self'",
+      'font-src': "'self'",
+      'connect-src': "'self' " + process.env.ADAPTER_URL,
+      'img-src': "'self'",
+      'style-src': "'self'",
+      'media-src': "'self'"
     },
 
     APP: {
